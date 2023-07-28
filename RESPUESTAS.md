@@ -44,4 +44,8 @@ Revisa el archivo `docker-compose.yml`.
 
 ¿Cómo se relacionan el archivo `docker-compose.yml` y el archivo `movies-api/Dockerfile`?
 
--
+-   Ya que la funcion del docker-compose es adminitrar multiples contenedores, se puede observar que dentro de este existe un servicio llamado `movies-api`. este servicio buscar dentro de movies-api un archivo dockerfile para la imagen.
+
+¿Qué crees que hace el atributo context debajo de build (está en la linea 6 del archivo docker-compose.yml)?
+
+-   Buscara dentro del directorio en `context` un archivo Dockerfile para construir una imagen del contenedor.
