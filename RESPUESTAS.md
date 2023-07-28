@@ -49,3 +49,14 @@ Revisa el archivo `docker-compose.yml`.
 ¿Qué crees que hace el atributo context debajo de build (está en la linea 6 del archivo docker-compose.yml)?
 
 -   Buscara dentro del directorio en `context` un archivo Dockerfile para construir una imagen del contenedor.
+
+## ETAPA 4
+
+Compara los archivos `Dockerfile` de `movies-api` y `movies-front`.
+
+Compara el atributo `build` del servicio `movies-api` con el de `movies-front`.
+
+-   ¿Cuál es la diferencia?
+    -   Lo mas evidente que el archivo dockerfile de movies-api posee 2 etapas (build y deploy) además de usar imagenes diferentes. en particular, movies-api crea ademas un empaquetamiendo en una imagen mas ligera.
+-   ¿Qué pasa si los dejas iguales?
+    -   Hablando en resultados finales, ambas configuraciones crean imagenes capaz de ejecutar una aplicacion en su respectiva tecnología, manteniedo por supuesto los archivos por separados en sus respectivos contextos para crear ambas imágenes.
