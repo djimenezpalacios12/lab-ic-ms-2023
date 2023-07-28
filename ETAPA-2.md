@@ -43,12 +43,11 @@ Ejecuta la migración igual que en la ETAPA-1:
 	docker-compose up --build
 ```
 
-Atención: si estabas ejecutando `docker-compose`` debes detenerlo con `ctrl-c`.
+Atención: si estabas ejecutando ` docker-compose`` debes detenerlo con  `ctrl-c`.
 
-Fíjate en los logs y asegurate que se ejecuta correctamente la migración. 
+Fíjate en los logs y asegurate que se ejecuta correctamente la migración.
 
 Tip: elimina la instancia en ElephantSQL.
-
 
 ## Preguntas
 
