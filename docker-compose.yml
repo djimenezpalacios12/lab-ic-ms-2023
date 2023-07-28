@@ -9,12 +9,18 @@ services:
         environment:
             - BIND_IP
             - BIND_PORT
+            - POSTGRES_USER
+            - POSTGRES_PASSWORD
+            - POSTGRES_PORT
+            - POSTGRES_DB
+            - POSTGRES_SERVER
         expose:
             - ${BIND_PORT}
         ports:
             - ${BIND_PORT}:${BIND_PORT}
         depends_on:
             - postgres
+        restart: always
 
     postgres:
         image: postgres:15.3
@@ -27,16 +33,16 @@ services:
         expose:
             - ${POSTGRES_PORT}
 
-        flyway:
-            image: flyway/flyway:7.7.0
-            container_name: migration_flyway
-            environment:
-                - FLYWAY_USER=${POSTGRES_USER}
-                - FLYWAY_PASSWORD=${POSTGRES_PASSWORD}
-                - FLYWAY_URL=jdbc:postgresql://${POSTGRES_SERVER}:${POSTGRES_PORT}/${POSTGRES_DB}
-                - FLYWAY_GROUP=true
-            command: -locations=filesystem:/flyway/sql -connectRetries=60 migrate
-            volumes:
-                - ./sql_migrations:/flyway/sql
-            depends_on:
-                - postgres
+    flyway:
+        image: flyway/flyway:7.7.0
+        container_name: migration_flyway
+        environment:
+            - FLYWAY_USER=${POSTGRES_USER}
+            - FLYWAY_PASSWORD=${POSTGRES_PASSWORD}
+            - FLYWAY_URL=jdbc:postgresql://${POSTGRES_SERVER}:${POSTGRES_PORT}/${POSTGRES_DB}
+            - FLYWAY_GROUP=true
+        command: -locations=filesystem:/flyway/sql -connectRetries=60 migrate
+        volumes:
+            - ./sql_migrations:/flyway/sql
+        depends_on:
+            - postgres
